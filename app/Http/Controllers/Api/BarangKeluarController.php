@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BarangKeluarController extends Controller
-{    
+{   
     public function index()
     {
         $barangKeluarTiapBulan = barangKeluar::barangKeluarTiapBulan();
@@ -17,7 +17,8 @@ class BarangKeluarController extends Controller
         // Ambil 5 barang yang selalu keluar setiap bulan
         $barangKeluarTiapBulan = $barangKeluarTiapBulan->take(5);
 
-        //return view('pages.filter', $barangKeluarTiapBulan);
+        // return view('pages.filter', $barangKeluarTiapBulan);
+        //return view('pages.filter', compact('barangKeluarTiapBulan'));
         return view('pages.filter', ['barangKeluarTiapBulan' => $barangKeluarTiapBulan]);
     }
 

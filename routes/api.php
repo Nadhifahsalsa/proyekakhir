@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/prediksi', 'FuzzyTsukamotoController@predict');
 
-Route::get('/barang_keluar', [BarangKeluarController::class, 'index']);
+//Route::get('/barang_keluar', [BarangKeluarController::class, 'index']);
 
 // Route::post('supplier', [supplierController::class,'insuppliers']);
 // Route::get('supplier', [SupplierController::class,'show']);

@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\FuzzyTsukamotoController;
 use App\Models\barangMasuk;
 use App\Models\FuzzyTsukamoto;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ForecastController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,12 @@ Route::get('/filter', function () {
 });
 
 
+Route::get('/predict', [ForecastController::class, 'predict']);
+
 Route::get('/supplier', [supplierController::class, 'index'])->name('supplier.index');
 
 Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk.index');
 
 //Route::get('/viewfuzzy', [FuzzyTsukamotoController::class, 'index'])->name('barangMasuk.index');
 
-//Route::get('/barang-keluar', [BarangKeluarController::class, 'index']);
+Route::get('/filter', [BarangKeluarController::class, 'index'])->name('barangKeluar.index');

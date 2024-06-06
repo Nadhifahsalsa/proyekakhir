@@ -11,4 +11,11 @@ class barang extends Model
     protected $fillable = [
         'kode_barang', 'supplier_id', 'nama_barang'
     ];
+
+    protected $table = 'barang';
+
+    public function barangKeluar()
+    {
+        return $this->hasMany(BarangKeluar::class, 'id_barang');
+    }
 }

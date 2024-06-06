@@ -14,8 +14,8 @@
                          </div> --}}
                          <h1>Barang yang Selalu Keluar Setiap Bulan</h1>
                          <ul>
-                             @foreach ($barangKeluarTiapBulan as $barangKeluar)
-                                 <li>{{ $barang->barang }}</li>
+                             @foreach ($barangKeluarTiapBulan as $barang)
+                                 <li>{{ $barang->nama_barang }}</li>
                              @endforeach
                          </ul>
                          {{-- <div class="custom-pagination">
