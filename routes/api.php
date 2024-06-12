@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\supplierController;
 use App\Http\Controllers\Api\FuzzyTsukamotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ForecastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/prediksi', 'FuzzyTsukamotoController@predict');
+
+Route::get('/predict', [ForecastController::class, 'predict']);
+Route::get('/show-prediction', [ForecastController::class, 'showPrediction']);
+
+
 
 //Route::get('/barang_keluar', [BarangKeluarController::class, 'index']);
 

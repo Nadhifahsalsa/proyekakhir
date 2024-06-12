@@ -34,7 +34,7 @@ Route::get('/filter', function () {
 });
 
 
-Route::get('/predict', [ForecastController::class, 'predict']);
+Route::get('/filter', [ForecastController::class, 'index']);
 
 Route::get('/supplier', [supplierController::class, 'index'])->name('supplier.index');
 
@@ -42,4 +42,4 @@ Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('baran
 
 //Route::get('/viewfuzzy', [FuzzyTsukamotoController::class, 'index'])->name('barangMasuk.index');
 
-Route::get('/filter', [BarangKeluarController::class, 'index'])->name('barangKeluar.index');
+//Route::get('/filter', [BarangKeluarController::class, 'index'])->name('barangKeluar.index');

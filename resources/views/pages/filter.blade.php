@@ -3,6 +3,7 @@
      Table
  @endsection
  @section('content')
+     @dd($hasil_fuzzy)
      <div class="product-status mg-b-15">
          <div class="container-fluid">
              <div class="row">
@@ -12,12 +13,19 @@
                          <div class="add-product">
                              <a href="#">Add Library</a>
                          </div> --}}
-                         <h1>Barang yang Selalu Keluar Setiap Bulan</h1>
+                         <h1>Predictions for Next Month</h1>
+                         @foreach ($predictions as $barang => $forecast)
+                             <div>
+                                 <h2>Nama Barang: {{ $barang }}</h2>
+                                 <p>Predicted Quantity: {{ $forecast[0] }}</p>
+                             </div>
+                         @endforeach
+                         {{-- <h1>Barang yang Selalu Keluar Setiap Bulan</h1>
                          <ul>
                              @foreach ($barangKeluarTiapBulan as $barang)
                                  <li>{{ $barang->nama_barang }}</li>
                              @endforeach
-                         </ul>
+                         </ul> --}}
                          {{-- <div class="custom-pagination">
                              <ul class="pagination">
                                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
