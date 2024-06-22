@@ -14,7 +14,7 @@ app = Flask(__name__)
 def forecast_arima(series, steps=1):
     try:
         if len(series) > 1:  # Memastikan ada cukup data untuk membangun model
-            model = ARIMA(series, order=(1, 1, 1))
+            model = ARIMA(series, order=(0, 0, 1))
             model_fit = model.fit()
             forecast = model_fit.forecast(steps=steps)
             return forecast[0]  # Mengembalikan prediksi
@@ -63,6 +63,9 @@ def run_script():
 
         # Get the first 5 indexes of the DataFrame
         predictions = predictions.head(5)
+        
+        # Menampilkan barang yang harus disiapkan untuk bulan depan
+        # predictions = predictions
 
         # Rename the first column to 'id_barang_keluar'
         predictions.index.name = 'barang'

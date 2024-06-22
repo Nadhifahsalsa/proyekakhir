@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BarangController;
 use App\Http\Controllers\Api\BarangKeluarController;
 use App\Http\Controllers\Api\BarangMasukController;
 use App\Http\Controllers\Api\supplierController;
@@ -38,8 +39,20 @@ Route::get('/filter', [ForecastController::class, 'index']);
 
 Route::get('/supplier', [supplierController::class, 'index'])->name('supplier.index');
 
+// Route::get('/barangmasuk', [BarangMasukController::class, 'index']);
+
 Route::get('/barangmasuk', [BarangMasukController::class, 'index'])->name('barangMasuk.index');
+
+Route::get('/barangmasuk/create', [BarangMasukController::class, 'create'])->name('barangMasuk.create');
+Route::post('/barangmasuk', [BarangMasukController::class, 'store'])->name('barangMasuk.store');
+Route::get('/barangmasuk/{id}/edit', [BarangMasukController::class, 'edit'])->name('barangMasuk.edit');
+Route::put('/barangmasuk/{id}', [BarangMasukController::class, 'update'])->name('barangMasuk.update');
+Route::delete('/barangmasuk/{id}', [BarangMasukController::class, 'destroy'])->name('barangMasuk.destroy');
 
 //Route::get('/viewfuzzy', [FuzzyTsukamotoController::class, 'index'])->name('barangMasuk.index');
 
-//Route::get('/filter', [BarangKeluarController::class, 'index'])->name('barangKeluar.index');
+Route::get('/barangkeluar', [BarangKeluarController::class, 'index'])->name('barangKeluar.index');
+
+Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+
+Route::resource('barang_masuks', BarangMasukController::class);

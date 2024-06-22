@@ -12,10 +12,10 @@ class barang extends Model
         'kode_barang', 'supplier_id', 'nama_barang'
     ];
 
-    protected $table = 'barang';
+    protected $table = 'barangs';
 
-    public function barangKeluar()
+    public function barangMasuks()
     {
-        return $this->hasMany(BarangKeluar::class, 'id_barang');
+        return $this->hasMany(BarangMasuk::class, 'barang', 'id');
     }
 }

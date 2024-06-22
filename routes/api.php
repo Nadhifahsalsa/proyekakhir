@@ -29,7 +29,13 @@ Route::get('/prediksi', 'FuzzyTsukamotoController@predict');
 Route::get('/predict', [ForecastController::class, 'predict']);
 Route::get('/show-prediction', [ForecastController::class, 'showPrediction']);
 
-
+Route::prefix('barangmasuk')->group(function () {
+    Route::get('/', [BarangMasukController::class, 'index'])->name('api.barangMasuk.index');
+    Route::post('/', [BarangMasukController::class, 'store'])->name('api.barangMasuk.store');
+    Route::get('/{id}', [BarangMasukController::class, 'show'])->name('api.barangMasuk.show');
+    Route::put('/{id}', [BarangMasukController::class, 'update'])->name('api.barangMasuk.update');
+    Route::delete('/{id}', [BarangMasukController::class, 'destroy'])->name('api.barangMasuk.destroy');
+});
 
 //Route::get('/barang_keluar', [BarangKeluarController::class, 'index']);
 

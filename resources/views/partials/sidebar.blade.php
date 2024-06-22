@@ -19,6 +19,12 @@
                             <span class="mini-click-non">Supplier</span>
                         </a>
                     </li>
+                    {{-- <li>
+                        <a title="Landing Page" href="/barang" aria-expanded="false">
+                            <spanclass="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                            <span class="mini-click-non">Barang</span>
+                        </a>
+                    </li> --}}
                     <li>
                         <a title="Landing Page" href="/barangmasuk" aria-expanded="false">
                             <spanclass="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
@@ -26,9 +32,15 @@
                         </a>
                     </li>
                     <li>
-                        <a title="Landing Page" href="/viewfuzzy" aria-expanded="false">
+                        <a title="Tambah Barang Masuk" href="/barangmasuk/create" aria-expanded="false">
+                            <span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                            <span class="mini-click-non">Tambah Barang Masuk</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="Landing Page" href="/barangkeluar" aria-expanded="false">
                             <spanclass="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
-                            <span class="mini-click-non">Peramalan</span>
+                            <span class="mini-click-non">Barang Keluar</span>
                         </a>
                     </li>
                     <li>

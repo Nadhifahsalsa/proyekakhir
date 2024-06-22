@@ -9,21 +9,37 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BarangKeluarController extends Controller
-{   
+{
+    // public function index()
+    // {
+    //     $barangKeluarTiapBulan = barangKeluar::barangKeluarTiapBulan();
+
+    //     // Ambil 5 barang yang selalu keluar setiap bulan
+    //     $barangKeluarTiapBulan = $barangKeluarTiapBulan->take(5);
+
+    //     // return view('pages.filter', $barangKeluarTiapBulan);
+    //     //return view('pages.filter', compact('barangKeluarTiapBulan'));
+    //     return view('pages.filter', ['barangKeluarTiapBulan' => $barangKeluarTiapBulan]);
+    // }
+
     public function index()
     {
-        $barangKeluarTiapBulan = barangKeluar::barangKeluarTiapBulan();
-
-        // Ambil 5 barang yang selalu keluar setiap bulan
-        $barangKeluarTiapBulan = $barangKeluarTiapBulan->take(5);
-
-        // return view('pages.filter', $barangKeluarTiapBulan);
-        //return view('pages.filter', compact('barangKeluarTiapBulan'));
-        return view('pages.filter', ['barangKeluarTiapBulan' => $barangKeluarTiapBulan]);
+        $data = DB::table('barang_keluars')
+        ->join('barangs', 'barang_keluars.barang', '=',
+            DB::raw('CAST(barangs.id AS BIGINT)')
+        )
+        ->select(
+            'barang_keluars.barang',
+            'barang_keluars.jumlah_barang',
+            'barang_keluars.tgl_keluar',
+            'barangs.nama_barang'
+        )
+        ->get();
+        return view('pages.barangkeluar', ['data' => $data]);
     }
 
 
-    public function exit(Request $request){
+    public function entry(Request $request){
         $input = $request -> all();
         $validator  = Validator::make($input, [
             'id_barang_keluar' => 'required',

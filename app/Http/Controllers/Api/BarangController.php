@@ -5,33 +5,49 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
-  
-    public function store(Request $request){
-        $input = $request -> all();
+    public function index()
+    {
+        $data = DB::table('barangs')
+            ->join('suppliers', 'barangs.supplier_id', '=', 'suppliers.id')
+            ->select(
+                // 'barangs.tgl_keluar',
+                'barangs.kode_barang',
+                'barangs.nama_barang',
+                'suppliers.nama_supplier'
+            )
+            ->get();
+        return view('pages.barang', ['data' => $data]);
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
         $validator  = Validator::make($input, [
             'kode_barang' => 'required',
             'supplier_id' => 'required',
             'nama_barang' => 'required'
         ]);
-        if($validator -> fails()){
-            return $this -> sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
         }
         $barang = barang::create($input);
         return response()->json([
-            "success" => true, 
+            "success" => true,
             "message" => "Product created successfully.",
             "data" => $barang
         ]);
     }
 
-    public function show() {
+    public function show()
+    {
         $barang = barang::all();
-        if (is_null($barang)){
-            return $this -> sendError('Product not found.');
+        if (is_null($barang)) {
+            return $this->sendError('Product not found.');
         }
         return response()->json([
             "success" => true,
@@ -40,12 +56,13 @@ class BarangController extends Controller
         ]);
     }
 
-    public function show_id($id) {
+    public function show_id($id)
+    {
         $barang = barang::find($id);
-        if (is_null($barang)){
+        if (is_null($barang)) {
             return response()->json([
-            "success" => false,
-            "message" => "Product not found."
+                "success" => false,
+                "message" => "Product not found."
             ]);
         }
         return response()->json([
@@ -55,14 +72,15 @@ class BarangController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $input = $request->all();
         $barang = barang::find($id);
 
-        if (is_null($barang)){
+        if (is_null($barang)) {
             return response()->json([
-            "success" => false,
-            "message" => "Product not found."
+                "success" => false,
+                "message" => "Product not found."
             ]);
         }
 
@@ -78,15 +96,16 @@ class BarangController extends Controller
         ]);
     }
 
-    public function delete( $id){
+    public function delete($id)
+    {
         $barang = barang::find($id);
-        if (is_null($barang)){
+        if (is_null($barang)) {
             return response()->json([
-            "success" => false,
-            "message" => "Product not found."
+                "success" => false,
+                "message" => "Product not found."
             ]);
         }
-        $barang -> delete();
+        $barang->delete();
         return response()->json([
             // $barang -> delete(),
             "success" => true,
